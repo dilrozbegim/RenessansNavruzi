@@ -1,0 +1,87 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #2c3e50;
+    color: white;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.game-wrapper {
+    text-align: center;
+}
+
+.header {
+    margin-bottom: 20px;
+}
+
+#item-name-to-find {
+    font-weight: bold;
+    color: #f1c40f;
+    font-size: 1.2em;
+}
+
+#game-area {
+    position: relative;
+    width: 1000px; /* Rasmingiz eniga moslang */
+    height: 600px; /* Rasmingiz bo'yiga moslang */
+    border: 10px solid white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    /* Fon rasmi JS orqali 'background-image' sifatida yuklanadi */
+    background-size: cover;
+    background-position: center;
+    overflow: hidden; /* Buyumlar chetga chiqib ketmasligi uchun */
+    cursor: pointer;
+}
+
+/* O'yinga qo'shiladigan yashirin buyum klassi */
+.hidden-item {
+    position: absolute;
+    cursor: pointer;
+    transition: transform 0.2s;
+    /* Dastlab biroz shaffof qilamiz, qiyinroq bo'lishi uchun */
+    opacity: 0.8; 
+}
+
+.hidden-item:hover {
+    transform: scale(1.1);
+}
+
+/* Yaltiroq dumaloq effekt klassi */
+.sparkle-effect {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(241,196,15,0.8) 50%, rgba(241,196,15,0) 70%);
+    box-shadow: 0 0 20px 10px rgba(241,196,15,0.7);
+    pointer-events: none; /* Effekt ustiga bosib bo'lmaydi */
+    transform: translate(-50%, -50%); /* Markazlashtirish */
+    animation: sparkleAnim 1s ease-out forwards;
+}
+
+/* Yaltirash animatsiyasi */
+@keyframes sparkleAnim {
+    0% { transform: translate(-50%, -50%) scale(0.1); opacity: 0; }
+    50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+    100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px 25px;
+    font-size: 1em;
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background-color: #2ecc71;
+}

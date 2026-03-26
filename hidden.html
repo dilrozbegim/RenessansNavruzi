@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yashirin Buyumlar O'yini</title>
+    <link rel="stylesheet" href="hidden.css">
+</head>
+<body>
+
+    <div class="game-wrapper">
+        <div class="header">
+            <h1>Yashirin Buyumlarni Toping!</h1>
+            <p>Qidirilmoqda: <span id="item-name-to-find">---</span></p>
+        </div>
+        
+        <div id="game-area">
+            </div>
+
+        <button id="next-level-btn" style="display: none;" onclick="location.reload()">Keyingi bosqich</button>
+    </div>
+
+    <script >// O'yin sozlamalari
+const config = {
+    bgImage: 'navruz.jpg', // Fon rasmi fayl nomi
+    itemSize: 60 // Buyumlarning taxminiy o'lchami (px)
+};
+
+// Topilishi kerak bo'lgan buyumlar ro'yxati (Rasmlaringizga almashtiring!)
+// Har bir obyektda fayl yo'li (src) va nomi bo'lishi shart.
+const itemsData = [
+    { name: "Mitti It", src: "item-dog.png" },
+    { name: "Sariq Soyabon", src: "item-umbrella.png" },
+    { name: "Futbol Koptogi", src: "item-ball.png" },
+    // Yana 7 ta qo'shing...
+];
+
+const gameArea = document.getElementById('game-area');
+const itemNameDisplay = document.getElementById('item-name-to-find');
+const nextBtn = document.getElementById('next-level-btn');
+
+let currentItemIndex = 0; // Hozir qaysi buyumni qidiryapmiz
+
+// O'yinni boshlash
+function initGame() {
+    // 1. Fon rasmini o'rnatish
+    gameArea.style.backgroundImage = `url(${config.bgImage})`;
+    
+    // 2. Buyumlarni random joylashtirish
+    placeItemsRandomly();
+    
+    // 3. Birinchi qidiriladigan buyum nomini ko'rsatish
+    updateTargetItemName();
+}
+
+// Buyumlarni o'yin maydoniga random sochib chiqish
+function placeItemsRandomly() {
+    itemsData.forEach((itemData, index) => {
+        const img = document.createElement('img');
+        img.src = itemData.src;
+        img.className = 'hidden-item';
+        img.alt = itemData.name;
+        img.id = `item-${index}`; // Har biriga ID beramiz
+        img.style.width = config.itemSize + 'px';
+        img.style.height = 'auto'; // Proportsiyani saqlash
+
+        // Random koordinatalarni hisoblash
+        // Chegaradan chiqib ketmasligi uchun o'lchamini ayirib tashlaymiz
+        const maxX = gameArea.offsetWidth - config.itemSize;
+        const maxY = gameArea.offsetHeight - config.itemSize;
+        
+        const randomX = Math.floor(Math.random() * maxX);
+        const randomY = Math.floor(Math.random() * maxY);
+
+        img.style.left = randomX + 'px';
+        img.style.top = randomY + 'px';
+
+        // Buyumga bosish hodisasini qo'shish
+        img.onclick = (e) => handleItemClick(e, index);
+
+        gameArea.appendChild(img);
+    });
+}
+
+// Qidirilayotgan buyum nomini yangilash
+function updateTargetItemName() {
+    if (currentItemIndex < itemsData.length) {
+        itemNameDisplay.innerText = itemsData[currentItemIndex].name;
+    } else {
+        itemNameDisplay.innerText = "Hamma narsa topildi!";
+        itemNameDisplay.style.color = "#2ecc71";
+        nextBtn.style.display = "inline-block";
+    }
+}
+
+// Buyum bosilganda ishlaydigan funksiya
+function handleItemClick(event, clickedIndex) {
+    // To'g'ri buyum bosildimi tekshiramiz
+    if (clickedIndex === currentItemIndex) {
+        const clickedImg = event.target;
+        
+        // 1. Yaltiroq effekt chiqarish (bosilgan joy koordinatasida)
+        showSparkle(event.clientX, event.clientY);
+        
+        // 2. Buyumni rasmda yo'qotish (topildi)
+        clickedImg.style.display = 'none';
+        
+        // 3. Keyingi buyumga o'tish
+        currentItemIndex++;
+        updateTargetItemName();
+        
+    } else {
+        // Noto'g'ri buyum bosilsa (ixtiyoriy: ovoz berish yoki jazo)
+        console.log("Bu u emas, boshqasini qidiring.");
+    }
+}
+
+// Yaltiroq dumaloq effektni ko'rsatish
+function showSparkle(clientX, clientY) {
+    const sparkle = document.createElement('div');
+    sparkle.className = 'sparkle-effect';
+    
+    // Sichqoncha koordinatasini 'game-area'ga nisbatan hisoblash
+    const rect = gameArea.getBoundingClientRect();
+    const x = clientX - rect.left;
+    const y = clientY - rect.top;
+    
+    sparkle.style.left = x + 'px';
+    sparkle.style.top = y + 'px';
+    
+    gameArea.appendChild(sparkle);
+    
+    // 1 soniyadan keyin effektni DOM'dan o'chirib tashlash (tozalamasa qotib qoladi)
+    setTimeout(() => {
+        sparkle.remove();
+    }, 1000);
+}
+
+// Sahifa yuklanganda o'yinni boshlash
+window.onload = initGame;</script>
+</body>
+</html>

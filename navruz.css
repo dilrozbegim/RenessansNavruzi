@@ -1,0 +1,1282 @@
+/* 1. UMUMIY SOZLAMALAR */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Spectral', serif;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* 2. NAVBAR (Sizning kodingiz, o'zgartirilmagan) */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%; /* Padding-top va bottomni 0 qildik */
+    position: absolute; 
+    width: 100%;
+    height: 100px; /* Navbarga aniq balandlik beramiz */
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background-color: white;
+}
+
+.logo {
+    display: flex;         /* Rasm va matnni yonma-yon qiladi */
+    align-items: center;    /* Vertikal ravishda bir xil chiziqqa tekislaydi */
+         gap:15px;   /* Rasm va matn orasidagi masofa */
+    
+    font-size: 28px;
+    color: #0d0202;
+ 
+}
+
+.logo img {
+    width: 80px; 
+    height: auto;
+    display: block;        /* Bo'shliqlarni yo'qotish uchun */
+}
+
+
+.logo span { color: rgb(247, 105, 157) ; }
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li { margin-left: 30px; }
+
+.nav-links a {
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.796);
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.nav-links a:hover { color: rgb(247, 105, 157) ; }
+
+/* Dropdown qismi */
+.dropdown { position: relative; }
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
+    z-index: 1;
+    top: 100%;
+    left: 0;
+    padding: 10px 0;
+    list-style: none;
+    border-radius: 4px;
+}
+.dropdown:hover .dropdown-content { display: block; }
+.dropdown-content li a {
+    color: black;
+    padding: 10px 20px;
+    display: block;
+    font-size: 14px;
+}
+
+/* 3. HERO SECTION (Rasmga mos qism) */
+.hero-section {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    background-image: url(dizayn.jpg);
+    padding-top: 80px; /* Navbar ostidan boshlanishi uchun */
+   
+}
+
+.hero-content {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+        padding-top: 60px; /* Navbar ostidan boshlanishi uchun */
+}
+
+
+.hero-text {
+    flex: 1;
+    padding-left: 8%;
+    padding-right: 5%;
+    z-index: 2;
+    animation: fadeIn 1.2s ease-out;
+    
+}
+
+.lang-tag {
+    color: #d81b60;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.hero-text h1 {
+    font-size: clamp(40px, 6vw, 80px);
+    line-height: 1.1;
+    color: rgb(247, 105, 157) ;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    text-shadow: rgb(250, 202, 220);
+}
+
+.hero-text h1 span {
+    font-weight: 900;
+    letter-spacing: 4px;
+}
+
+.hero-text p {
+    font-size: 18px;
+    color: #444;
+    line-height: 1.6;
+    max-width: 500px;
+    margin-bottom: 40px;
+}
+
+.learn-more-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 15px 35px;
+    background-color: #a67373;
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-size: 18px;
+    transition: 0.3s ease;
+}
+
+.learn-more-btn:hover {
+    background-color: #8e5d5d;
+    transform: translateX(10px);
+}
+
+.hero-image {
+    flex: 1.2;
+    height: 100%;
+    
+}
+
+.hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    
+}
+
+/* 4. FOOTER VA HAMKORLAR LENTASI */
+.site-footer {
+    width: 100%;
+    background-color: #ffffff;
+    border-top: 1px solid #eaeaea;
+    padding: 20px 0;
+    position: relative;
+    z-index: 100;
+}
+
+
+
+/* 4. FOOTER VA HAMKORLAR LENTASI - TO'G'RILANGAN */
+
+
+.footer-partners {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.partners-label {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #4d4c4c;
+    font-weight: bold;
+}
+
+.lenta-wrapper {
+    overflow: hidden;
+    width: 100%;
+    /* Chetlarini yumshoq o'chirish */
+    mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    padding: 20px 0;
+}
+
+.lenta-track {
+    display: flex;
+    width: max-content;
+    gap: 40px; /* Logolar orasidagi masofa */
+    animation: infiniteScroll 60s linear infinite; /* Tezlikni biroz oshirdik */
+}
+
+.partner-item img {
+    height: 70px; /* Logolarni biroz kattalashtirdik */
+    width: auto;
+    filter: none; /* Rangli bo'lishi uchun grayscale olib tashlandi */
+    opacity: 1;    /* Xiralik olib tashlandi */
+    transition: 0.3s;
+}
+
+.partner-item img:hover {
+    transform: scale(1.1);
+}
+
+/* Animatsiya to'g'ri ishlashi uchun */
+@keyframes infiniteScroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+/* ANIMATSIYALAR */
+@keyframes infiniteScroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* MOBIL MOSLASHUVCHANLIK */
+@media screen and (max-width: 992px) {
+    .hero-content { flex-direction: column; text-align: center; }
+    .hero-text { padding: 40px 20px; }
+    .hero-text p { margin: 0 auto 30px; }
+    .hero-image { width: 100%; height: 50vh; }
+    .nav-links { display: none; } /* Mobil menyu uchun */
+}
+
+.hero-section {
+    min-height: 100vh; /* height emas, min-height bo'lishi shart! */
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    background-size: cover; /* Rasmni to'liq sig'diradi */
+    background-position: center; /* Rasmni markazda tutadi */
+    background-attachment: fixed; /* Parallaks effekti berish uchun (ixtiyoriy) */
+}
+
+.section-1 {
+    background-image: linear-gradient( rgba(0,0,0,0.1)), url('adras.jpg');
+}
+
+.section-2 {
+    background-image: linear-gradient( rgba(0,0,0,0.1)), url('pattern1.jpg');
+    height: auto;
+}
+
+.section-3 {
+    background-image: linear-gradient(rgba(0,0,0,0.0), rgba(0,0,0,0.1)), url('bahor.jpg');
+    height: auto;
+}
+
+.section-question {
+        background-image: linear-gradient(rgba(0,0,0,0.0), rgba(0,0,0,0.1)), url('bahor.jpg');
+    height: auto;
+}
+
+.section-navruz {
+        background-image: linear-gradient(rgba(0,0,0,0.0), rgba(0,0,0,0.1)), url('navruzik2.png');
+    height: auto;
+}
+.section-post {
+        background-image: linear-gradient(rgba(0,0,0,0.0), rgba(0,0,0,0.1)), url('bahor.jpg');
+    height: auto;
+}
+.section-game {
+        background-image: linear-gradient(rgba(0,0,0,0.0), rgba(0,0,0,0.1)), url('fonmilliy.jpg');
+    height: auto;
+}
+
+.imagel-container {
+    position: relative;
+    width: 100%;
+    max-width: 700px; /* Videoning maksimal kengligi */
+    margin: 20px auto; /* Markazga qo'yish */
+    aspect-ratio: 16 / 9; /* Video formati */
+    border-radius: 15px; /* Burchaklarni yumshatish */
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* Soyasi */
+}
+.image-container {
+    position: relative;
+    width: 100%;
+    max-width: 900px; /* Videoning maksimal kengligi */
+    margin: 20px auto; /* Markazga qo'yish */
+    aspect-ratio: 16 / 9; /* Video formati */
+    border-radius: 15px; /* Burchaklarni yumshatish */
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* Soyasi */
+}
+
+.photo-content {
+    display: flex;
+    justify-content: flex-end; /* Rasmni konteynerning o'ngiga taqaydi */
+    width: 100%;
+    margin-top: -100px;
+}
+
+.photo-content img {
+    /* Rasmni 100% dan biroz kichikroq qilamiz, shunda o'ngga surishga joy qoladi */
+    width: 70%;         /* Xohishingizga qarab 60% yoki 80% qilishingiz mumkin */
+    max-width: 900px;   /* Juda katta ekranlarda haddan tashqari kattalashib ketmasligi uchun */
+    height: auto;
+    
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    
+    /* Agar flex-end ish bermasa, mana bu qo'shimcha yordam beradi: */
+    margin-left: auto; 
+}
+
+/* Mobil versiyada rasm yana to'liq kenglikni egallashi uchun */
+@media screen and (max-width: 768px) {
+    .photo-content img {
+        width: 100%;
+        margin-left: 0;
+    }
+}
+
+.heros-image {
+    flex: 1.6;
+    height: 100%;
+    margin-left: 20px;
+}
+
+.heros-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    
+}
+
+
+.hero-text p {
+    line-height: 1.8;
+    max-width: 100%; /* Matn kengayishi uchun */
+    font-size: 16px;
+    color: black;
+    text-shadow: 3px 3px 10px rgba(255, 255, 255, 0.3);
+}
+
+#readMoreBtn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: -40px;
+    transition: 0.3s;
+}
+
+#readMoreBtn:hover {
+    background-color: #0056b3;
+}
+
+.hero-text h2 {
+    font-size: clamp(30px, 4vw, 60px);
+    line-height: 1.1;
+    color: rgb(244, 240, 241) ;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    text-shadow: 3px 3px 10px rgba(0,0,0,0.3);
+    margin-top: -100px;
+}
+
+.hero-text h2 span {
+    font-weight: 900;
+    letter-spacing: 4px;
+}
+
+/* .hero-content balandligini avto qiling */
+.hero-content {
+    display: flex;
+    width: 100%;
+    height: auto; /* 100% dan auto ga o'zgartirdik */
+    align-items: center;
+    flex-wrap: wrap; /* Mobil versiyada qulay bo'lishi uchun */
+}
+
+.heros-section {
+    width: 100%;
+    /* Balandlikni qat'iy (100vh) qilib belgilamaymiz, 
+       chunki u matn ko'paysa ham o'zgarmay qoladi. */
+    min-height: 100vh; 
+    height: auto; /* Matn ko'payganda avtomatik kengayadi */
+    
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    padding: 120px 0 60px 0; /* Tepadan navbar uchun, pastdan matn yopishib qolmasligi uchun bo'shliq */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Parallaks effekti */
+}
+.heros-content {
+    display: flex;
+    width: 95%;          /* Ekran kengligining 95% qismini egallaydi */
+    max-width: 1400px;   /* Juda katta ekranlarda haddan tashqari yoyilib ketmasligi uchun */
+    margin: 0 auto;      /* Markazga olish */
+    align-items: center; 
+    justify-content: space-between; /* Rasm va matnni chekkalarga emas, o'rtaroqqa suradi */
+    gap: 20px;           /* Ular orasidagi masofani kichraytirdik */
+    padding: 20px 0;
+}
+
+.heros-image {
+    flex: 0 0 55%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px; /* Dastlabki masofa */
+    justify-content: flex-start;
+    margin-top: -80px;
+    transition: gap 0.5s ease; /* Masofa o'zgarishi silliq bo'ladi */
+}
+
+.heros-image img {
+    width: 100%;         /* Berilgan 55% joyni to'liq egallaydi */
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    object-fit: cover;
+}
+
+
+
+/* Mobil versiya uchun moslashuv (ixtiyoriy) */
+@media screen and (max-width: 992px) {
+    .heros-image {
+        flex: 0 0 100%;
+        margin-bottom: 30px;
+    }
+}
+/* 1. Matn joylashgan blok uchun blur effekti */
+.heros-text {
+    flex: 1;
+    padding: 40px; /* Matn atrofida bo'shliq bo'lishi uchun padding qo'shdik */
+    z-index: 2;
+    animation: fadeIn 1.2s ease-out;
+    margin-left:-20px;
+    margin-top: -100px;
+
+    /* BLUR EFFEKTI SHU YERDA: */
+    background-color: rgba(255, 255, 255, 0.3); /* Yarim shaffof oq fon (orqa rangni biroz ochish uchun) */
+    backdrop-filter: blur(10px); /* Orqadagi rasmni 10px ga xiralashtiradi */
+    -webkit-backdrop-filter: blur(10px); /* Safari brauzeri uchun */
+    
+    /* Burchaklarni yumshatish va soya (vizual ko'rinish uchun) */
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); 
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Yengil chegara */
+
+    /* Matnni yaxshiroq o'qilishi uchun qo'shimcha */
+    margin-left: 5%; /* Rasm va matn bloki orasida masofa */
+}
+
+/* 2. Sarlavha stili (siz yuborgan CSS-ga asoslanib) */
+.heros-text h2 {
+    font-size: clamp(30px, 4vw, 50px); /* Kichikroq va moslashuvchan hajm */
+    color: rgb(247, 246, 249); /* Pushti rang (navbardagi kabi) */
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    /* Text-shadow ni o'chirdik yoki oq qildik, blur fonda qora soya yomon ko'rinadi */
+    text-shadow: 3px 3px 10px rgba(0,0,0,0.6); 
+    margin-top: 0; /* Tepaga surishni o'chirdik, padding o'zi joylaydi */
+}
+
+/* 3. Paragraf stili (siz yuborgan CSS-ga asoslanib) */
+.heros-text p {
+    font-size: 17px;
+    color: #333; /* To'qroq kulrang, o'qishga oson */
+    line-height: 1.7; /* Qatorlar orasini biroz ochdik */
+    margin-bottom: 30px;
+    text-shadow: none; /* Soyani o'chirdik */
+}
+
+/* 4. "Batafsil o'qish" tugmasi (blok ichida chiroyli turishi uchun) */
+#readMoreBtn {
+    margin-top: 0; /* Negativ marginni o'chirdik */
+    display: inline-block;
+}
+
+
+/* Container sozlamalari */
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 ta ustun */
+    gap: 30px; /* Cardlar orasidagi masofa */
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto; /* Markazga olish */
+    padding: 50px 0;
+}
+
+
+/* --- RESPONSIVE (Mobil versiya) --- */
+
+@media (max-width: 1100px) {
+    .cards-container {
+        grid-template-columns: repeat(2, 1fr); /* Planshetda 2 tadan */
+    }
+}
+
+@media (max-width: 600px) {
+    .cards-container {
+        grid-template-columns: 1fr; /* Telefonda 1 tadan */
+    }
+    .card {
+        width: 100%;
+        margin-left: 0;
+    }
+}
+
+/* Asosiy konteyner */
+.hero-section.section-2 {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;    
+    width: 100%;
+    padding: 60px 0;
+    /* Fonni shaffof qilish */
+    background-color: transparent; 
+}
+
+/* Sarlavha bloki */
+.header-container {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 50px;    
+}
+
+.header-container h2 {
+    font-size: 4.5rem;      
+    font-weight: 800;
+    background: white;
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    margin: 0;
+    filter: drop-shadow(2px 4px 8px rgba(0,0,0,0.15));
+}
+
+
+
+.header-container h3 {
+    font-size: 3.5rem;      
+    font-weight: 600;
+    background: rgb(239, 126, 175);
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    margin: 0;
+    filter: drop-shadow(2px 4px 8px rgba(0,0,0,0.15));
+}
+
+/* Galereya setkasi */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 30px;
+    width: 90%;
+    max-width: 1200px;
+}
+
+.gallery-grid img {
+    width: 100%;
+    height: 300px;         
+    object-fit: contain;   /* PNG formatidagi taomlar uchun eng yaxshisi */
+    border-radius: 20px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* Rasm orqasidagi fonni ham shaffof qildim */
+    background: transparent; 
+}
+
+.gallery-grid img:hover {
+    transform: translateY(-12px) scale(1.1); /* Bir oz ko'proq effekt */
+    /* Soya PNG shakliga mos tushishi uchun filter ishlatamiz */
+    filter: drop-shadow(0 20px 25px rgba(0,0,0,0.2)); 
+}
+
+/* --- Mobil moslashuvchanlik --- */
+
+@media screen and (max-width: 1024px) {
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .header-container h2 {
+        font-size: 3.5rem;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    .header-container h2 {
+        font-size: 2.2rem;
+    }
+    .gallery-grid img {
+        height: 220px;
+    }
+}
+
+
+/* Section 3 uchun yangilangan CSS */
+.section-3 {
+    height: 180vh; /* Scroll masofasi uchun */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
+    background-color: #fff; /* Oq fon yoki o'zingiz xohlagan rang */
+    overflow: hidden;
+}
+
+.flower-container {
+    position: sticky;
+    top: 50%;
+    transform: translateY(-50%); /* Ekran o'rtasida qotib turishi uchun */
+    width: 100%;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -200px;
+    margin-bottom: -200px;
+}
+
+.flower {
+    position: absolute;
+    width: 400px; /* Gullarning o'lchami */
+    height: auto;
+    z-index: 10;
+    transition: transform 0.1s ease-out; /* Silliq harakat uchun */
+}
+
+.flower-left {
+    left: 50%;
+    transform: translateX(-100%); /* Boshida chap yarmi markazda */
+}
+
+.flower-right {
+    right: 50%;
+    transform: translateX(100%); /* Boshida o'ng yarmi markazda */
+}
+
+.center-card {
+    position: relative;
+    width: 500px;
+    height:280px;
+    padding: 50px;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    text-align: center;
+    opacity: 0;
+    transform: scale(0.8);
+    z-index: 5;
+    transition: all 0.3s ease;
+}
+
+.post img{
+    width:220px;
+    height:auto;
+    border-radius: 25px;
+
+}
+
+/* Section Umumiy */
+.heros-sectionny {
+    min-height: 100vh;
+    padding: 100px 5%;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.heros-contentny {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+
+
+/* Matn bloki - Glassmorphism */
+.heros-text-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(15px);
+    padding: 50px;
+    border-radius: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.05);
+}
+
+.sub-title {
+    color: #f7699d;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.heros-text-card h2 {
+    font-size: 2.8rem;
+    color: #2d3436;
+    line-height: 1.2;
+    margin-bottom: 25px;
+}
+
+.heros-text-card h2 span {
+    color: #f7699d;
+}
+
+.heros-text-card p {
+    color: #636e72;
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+/* Tugma dizayni */
+#readMoreBtn {
+    margin-top: 30px;
+    padding: 15px 40px;
+    background: #f7699d;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.4s;
+    box-shadow: 0 10px 20px rgba(247, 105, 157, 0.3);
+}
+
+#readMoreBtn:hover {
+    background: #d81b60;
+    transform: translateY(-3px);
+    box-shadow: 0 15px 25px rgba(247, 105, 157, 0.4);
+}
+
+/* Animatsiya */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Mobil versiya */
+@media (max-width: 992px) {
+    .heros-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .img-secondary { display: none; }
+    .img-main { width: 100%; }
+}
+
+.header-container h4 {
+    font-size: 2.6rem;      
+    font-weight: 800;
+
+    background: rgb(239, 126, 175);
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    margin: 0;
+    filter: drop-shadow(2px 4px 8px rgba(0,0,0,0.15));
+}
+
+.card-details img{
+    width:120px;
+    height:auto;
+    align-items:flex-start;
+    margin-left:-220px;
+    margin-top: -40px;
+
+}
+
+
+/* Matn kodi */
+.header-container p {
+    font-size: 1.2rem;      
+    font-weight: 500;
+    width: 280px;
+    margin-left: 600px;
+    background: rgb(239, 126, 175);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    margin: 0; /* Margin-left: 200px ni olib tashlang */
+    filter: drop-shadow(2px 4px 8px rgba(0,0,0,0.15));
+}
+
+
+
+
+/* KARTALARNI O'ROVCHI - 4 TA KARTA UCHUN */
+.articles-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px; /* Kartalar orasidagi masofani biroz kamaytirdik */
+    justify-content: center;
+    width: 95%; /* Kengroq joy egallashi uchun */
+    max-width: 1400px;
+    margin: 0 auto;
+    margin-bottom:50px;
+}
+
+/* KARTA ASOSI - QATORDА 4 TA BO'LISHI UCHUN */
+.article-box {
+    /* 100% / 4 = 25%. Bo'shliqlar (gap) hisobiga 23% qildik */
+    flex: 0 1 calc(24% - 15px); 
+    min-width: 250px; /* Juda kichrayib ketmasligi uchun */
+    background: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+    border: 1px solid #eee;
+}
+
+.article-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* RASM QISMI - BALANDLIGINI KAMAYTIRDIK */
+.article-image img {
+    width: 100%;
+    height: 160px; /* Kichikroq rasm */
+    object-fit: cover;
+    display: block;
+}
+
+/* MATNLI QISM - ICHKI BO'SHLIQLARNI IXCHAMLASHTIRDIK */
+.article-body {
+    padding: 15px;
+    text-align: left;
+}
+
+.article-title {
+    font-size: 1.05rem; /* Shriftni biroz kichraytirdik */
+    color: #222;
+    margin-bottom: 8px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.article-desc {
+    font-size: 0.85rem;
+    color: #666;
+    line-height: 1.4;
+    margin-bottom: 12px;
+    /* Matn juda uzun bo'lsa 3 qatorda to'xtatadi */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.publish-date {
+    display: block;
+    font-size: 0.75rem;
+    color: #999;
+    margin-bottom: 10px;
+}
+
+/* TEGLAR */
+.category-tags {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.tag-item {
+    background: #f5f5f5;
+    color: #777;
+    padding: 3px 8px;
+    font-size: 0.7rem;
+    border-radius: 3px;
+}
+
+/* MOBIL MOSLASHUV */
+@media (max-width: 1100px) {
+    .article-box {
+        flex: 0 1 calc(48% - 15px); /* Planshetda 2 tadan */
+    }
+}
+
+@media (max-width: 650px) {
+    .article-box {
+        flex: 0 1 100%; /* Telefonda 1 tadan */
+    }
+}
+
+.article-body {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.articles-title {
+    font-size: 1.15rem;
+    color: var(--text-main);
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 15px;
+    /* Sarlavhani 2 qatordan keyin qirqib tashlash */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    transition: color 0.3s ease;
+}
+
+.articles-box:hover .article-title {
+    color: var(--primary-color); /* Hover bo'lganda rang o'zgarishi */
+}
+
+/* "Batafsil" tugmasi qo'shish (professional ko'rinish beradi) */
+.read-more {
+    font-size: 0.9rem;
+    color: var(--primary-color);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: auto;
+}
+
+.read-more::after {
+    content: '→';
+    transition: transform 0.3s ease;
+}
+
+.articles-box:hover .read-more::after {
+    transform: translateX(5px);
+}
+
+
+/* Har bir gul rasmi uchun uslub */
+.flower-img {
+    position: absolute;
+    top: 100px; /* Boshlanish joyi ekrandan tepada */
+    pointer-events: none; /* Sichqoncha ta'sir qilmaydi */
+    z-index: 1;
+
+    
+    /* Ikkita animatsiya: biri tushish, biri chayqalish */
+    animation: fall linear forwards, sway ease-in-out infinite alternate;
+}
+
+/* 1-Animatsiya: Yuqoridan pastga tushish va shaffoflik */
+@keyframes fall {
+    0% {
+        top: -100px;
+        opacity: 0;
+    }
+    10% {
+        opacity: 1; /* Tushishni boshlaganda ko'rinsin */
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        top: 110vh; /* Ekrandan pastga tushib ketadi */
+        opacity: 0; /* Oxirida yo'qoladi */
+    }
+}
+
+
+/* 2-Animatsiya: Chapga-o'ngga chayqalish va aylanish */
+@keyframes sway {
+    0% {
+        transform: translateX(-20px) rotate(0deg);
+    }
+    100% {
+        transform: translateX(20px) rotate(180deg); /* Yarim aylanadi */
+    }
+}
+
+/* Navruz Section Maxsus Stil */
+.navruz-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 100px 0;
+}
+
+.header-line {
+    width: 80px;
+    height: 4px;
+    background: #f7699d;
+    margin: 20px auto;
+    border-radius: 2px;
+}
+
+.fact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin-top: 50px;
+}
+
+.fact-card {
+    background: rgba(255, 255, 255, 0.2); /* Yarim shaffof */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    padding: 35px 25px;
+    border-radius: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    text-align: center;
+    transition: all 0.4s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.fact-card:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.4);
+    border-color: #f7699d;
+}
+
+.fact-icon {
+    font-size: 45px;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.fact-card h3 {
+    color: #f7699d;
+    font-size: 22px;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.fact-card p {
+    color: #444;
+    font-size: 15px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.navruz-footer-text {
+    margin-top: 60px;
+    font-style: italic;
+    font-size: 1.2rem;
+    color: #f7f7f7;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.5);
+    display: inline-block;
+    padding: 10px 30px;
+    border-radius: 50px;
+    width: 100%;
+}
+
+/* Mobil moslashuv */
+@media (max-width: 768px) {
+    .header-container h2 {
+        font-size: 2.5rem;
+    }
+    .fact-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.gallery {
+    /* Bir qatorda nechta rasm bo'lishi (4 tadan 5 tagacha) */
+    column-count: 5; 
+    column-gap: 15px; /* Rasmlar orasidagi masofa */
+    padding: 15px;
+}
+
+.gallery-item {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 15px; /* Pastki qismdagi masofa */
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    
+}
+
+.gallery-item img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+/* Rasm ustiga borganda ozgina effekt */
+.gallery-item:hover {
+    transform: scale(1.02);
+    cursor: zoom-in;
+}
+
+/* Telefonlar uchun moslashuvchanlik (Responsive) */
+@media (max-width: 1000px) {
+    .gallery {
+        column-count: 3;
+    }
+}
+
+@media (max-width: 600px) {
+    .gallery {
+        column-count: 2;
+    }
+}
+
+/* GAME SECTION YANGI DIZAYN */
+.hero-section.section-game {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 2%;
+    overflow: hidden;
+}
+
+.game-wrapper {
+    display: flex;
+    align-items: flex-end; /* Rasmlar pastki chiziqda tekis turishi uchun */
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
+    gap: 20px;
+}
+
+/* Personajlar qutisi */
+.char-box {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    transition: transform 0.4s ease;
+}
+
+.game-character {
+    width: 100%;
+    max-width: 350px; /* Rasmlar o'lchami */
+    height: auto;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2));
+}
+
+/* O'rtadagi matn bloki */
+.game-center-content {
+    flex: 1.5; /* Matn qismi kengroq bo'ladi */
+    text-align: center;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    margin-bottom: 50px; /* Rasmlardan biroz yuqoriroqda turishi uchun */
+    z-index: 5;
+}
+
+.game-badge {
+    color: #f7699d;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 14px;
+}
+
+.game-main-title {
+    font-size: clamp(30px, 4vw, 55px);
+    color: white;
+    margin: 15px 0;
+    line-height: 1.2;
+}
+
+.game-main-title span {
+    color: #f7699d;
+    display: block; /* "O'YINI" so'zi pastga tushadi */
+}
+
+.game-text {
+    color: #eee;
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+/* O'ynash tugmasi */
+.play-action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 35px;
+    background: #f7699d;
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 18px;
+    transition: 0.3s;
+    box-shadow: 0 8px 20px rgba(247, 105, 157, 0.4);
+}
+
+.play-action-btn:hover {
+    background: #d81b60;
+    transform: translateY(-5px) scale(1.05);
+}
+
+.icon-circle {
+    background: white;
+    color: #f7699d;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* MOBIL VERSIYA */
+@media (max-width: 992px) {
+    .game-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+    .char-box {
+        order: 2; /* Rasmlar pastga tushadi */
+        width: 50%;
+    }
+    .game-center-content {
+        order: 1; /* Matn tepaga chiqadi */
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    .char-box.left, .char-box.right {
+        display: inline-block;
+        width: 45%;
+    }
+}
